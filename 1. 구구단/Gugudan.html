@@ -11,7 +11,7 @@
     <div id="root">
       <div>{{first}} 곱하기 {{second}}는?</div>
       <form v-on:submit="onSubmitForm">
-        <input v-model="value" type="number" />
+        <input v-model="value" type="number" refs="answer" />
         <button type="submit">입력</button>
       </form>
       <div>{{result}}</div>
@@ -30,7 +30,11 @@
             e.preventDefault();
             if (this.first * this.second === parseInt(this.value)) {
               this.result = '정답입니다.';
+              this.first = Math.ceil(Math.random() * 9);
+              this.second = Math.ceil(Math.random() * 9);
             } else this.result = '오답입니다.';
+            this.value = '';
+            this.$refs.answer.focus();
           },
         },
       });
