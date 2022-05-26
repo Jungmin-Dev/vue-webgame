@@ -8,7 +8,6 @@ module.exports = {
     },
     entry:{
         app: path.join(__dirname, 'main.js')
-
     },
     module:{
         rules:[{
