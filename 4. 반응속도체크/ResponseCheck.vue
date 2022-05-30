@@ -3,10 +3,10 @@
     <div id="screen" v-bind:class="state" v-on:click="onClickScreen">
       {{ message }}
     </div>
-    <div>
+    <div v-if="result.length">
       <div>
         평균 시간 :
-        {{ result.reduce((a, c) => a + c, 0) / result.length || 0 }} ms
+        {{ average }} ms
       </div>
       <button v-on:click="onReset">리셋</button>
     </div>
@@ -24,6 +24,11 @@ export default {
       state: 'waiting',
       message: '클릭해서 시작하세요.',
     };
+  },
+  computed: {
+    average() {
+      return this.result.reduce((a, c) => a + c, 0) / this.result.length || 0;
+    },
   },
   methods: {
     onReset() {
